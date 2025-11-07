@@ -3,230 +3,163 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moja Strona</title>
-  <meta name="description" content="Twoja własna, w pełni edytowalna, darmowa strona WWW."/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
+  <title>Nasza rocznica 💖</title>
+  <meta name="description" content="Strona na naszą rocznicę – serca, zdjęcia, muzyka i piękne słowa."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
 
-  <!-- Minimalny reset i zmienne -->
   <style>
-    :root {
-      --bg: #0b0c0f;
-      --panel: #111318;
-      --text: #e8ecf1;
-      --muted: #aab3c5;
-      --brand: #6ea8fe;
-      --brand-2: #7ee787;
-      --border: #1f2330;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    :root.light {
-      --bg: #f7f9fc;
-      --panel: #ffffff;
-      --text: #0e1220;
-      --muted: #5b667a;
-      --brand: #1363df;
-      --brand-2: #0ea5e9;
-      --border: #e6e9f2;
-      --shadow: 0 10px 30px rgba(10, 20, 40, .08);
+    :root{
+      --bg1: #ffdde1;   /* róż */
+      --bg2: #ee9ca7;   /* malinowy */
+      --ink: #2a1a1f;   /* ciemny tekst */
+      --muted: #5b3a44; /* stonowany tekst */
+      --card: rgba(255,255,255,.85);
+      --shadow: 0 20px 60px rgba(0,0,0,.15);
+      --border: rgba(255,255,255,.6);
+      --accent: #ff3b6b;
     }
 
-    * { box-sizing: border-box; }
-    html,body { height: 100%; }
-    body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 10% -10%, rgba(110,168,254,.25), transparent 50%),
-                  radial-gradient(1000px 700px at 110% 10%, rgba(126,231,135,.2), transparent 40%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      background:
+        radial-gradient(1200px 800px at -10% -10%, rgba(255,255,255,.40), transparent 40%),
+        radial-gradient(1000px 700px at 110% 0%, rgba(255,255,255,.35), transparent 40%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
     }
-    a { color: var(--brand); text-decoration: none; }
-    img { max-width: 100%; display: block; }
 
-    /* Layout */
-    .container { width: min(1100px, 92%); margin: 0 auto; }
-    .nav { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 75%, transparent); border-bottom: 1px solid var(--border); }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .9rem 0; }
-    .brand { display: inline-flex; gap: .6rem; align-items: center; font-weight: 700; letter-spacing: .2px; }
-    .brand .logo { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
-    .menu { display: flex; gap: 1rem; align-items: center; }
-    .menu a { padding: .5rem .8rem; border-radius: 10px; color: var(--text); border: 1px solid transparent; }
-    .menu a:hover { border-color: var(--border); background: color-mix(in oklab, var(--panel) 85%, transparent); }
-
-    .btn { display: inline-flex; gap: .6rem; align-items: center; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0c0f; font-weight: 700; padding: .65rem .95rem; border-radius: 12px; border: none; box-shadow: var(--shadow); }
-    .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-
-    .hero { padding: 6rem 0 3rem; text-align: center; }
-    .hero h1 { font-size: clamp(2rem, 2.5rem + 1.2vw, 3.4rem); line-height: 1.05; margin: 0 0 1rem; }
-    .hero p { margin: 0 auto 1.6rem; color: var(--muted); max-width: 60ch; }
-    .hero .cta { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
-
-    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-
-    .card { background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 92%, transparent), color-mix(in oklab, var(--panel) 98%, transparent)); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem; box-shadow: var(--shadow); }
-    .card h3 { margin: .2rem 0 .4rem; }
-    .muted { color: var(--muted); }
-
-    .section { padding: 3rem 0; }
-    .section h2 { font-size: clamp(1.6rem, 1.2rem + .8vw, 2.2rem); margin: 0 0 1rem; }
-
-    .features li { display: grid; grid-template-columns: 36px 1fr; gap: .8rem; padding: .6rem .4rem; align-items: start; }
-    .features .icon { width: 36px; height: 36px; border-radius: 9px; display: grid; place-items: center; background: color-mix(in oklab, var(--brand) 25%, transparent); }
-
-    .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: .6rem; }
-    .gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); }
-    .gallery .tall { grid-row: span 2; }
-    .gallery .wide { grid-column: span 2; }
-
-    .contact { display: grid; gap: 1rem; grid-template-columns: 1fr; max-width: 680px; margin: 0 auto; }
-    .contact input, .contact textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 12px; padding: .8rem .9rem; font: inherit; }
-    .contact button { justify-self: start; }
-
-    .footer { border-top: 1px solid var(--border); color: var(--muted); padding: 2rem 0; text-align: center; }
-
-    /* Mobile nav */
-    .burger { display: none; background: none; border: 1px solid var(--border); border-radius: 10px; padding: .45rem .6rem; color: var(--text); }
-    @media (max-width: 800px){
-      .menu { display: none; position: absolute; top: 56px; right: 4%; background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: .6rem; box-shadow: var(--shadow); }
-      .menu.open { display: flex; flex-direction: column; align-items: stretch; }
-      .burger { display: inline-flex; }
+    /* delikatny pattern z serduszek jako nakładka */
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.25; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 16c-3.5-7.2-16-5.8-16 3.8 0 7.4 9.6 12.9 16 18.2 6.4-5.3 16-10.8 16-18.2 0-9.6-12.5-11-16-3.8z' fill='%23ffffff' fill-opacity='0.25'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
     }
+
+    a{color: var(--accent); text-decoration: none;}
+    .container{ width:min(1100px, 92%); margin:0 auto; }
+
+    /* HERO */
+    .hero{ position:relative; padding: 6rem 0 3rem; text-align:center; color:#3a1020; }
+
+    .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.2rem, 5vw, 5rem); line-height:1; margin:0 0 .6rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
+    .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.2rem; max-width: 60ch; }
+
+    /* DUŻE ANIMOWANE SERCE */
+    .heart-wrap{ display:grid; place-items:center; margin: 1.4rem 0 1.6rem; }
+    .heart{
+      position:relative; width:160px; height:160px; transform: rotate(-45deg);
+      animation: beat 1.4s ease-in-out infinite;
+    }
+    .heart::before, .heart::after{
+      content:""; position:absolute; width:160px; height:160px; background: radial-gradient(circle at 30% 30%, #ff6b9a, #ff3b6b 60%);
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+    .heart::before{ left:80px; }
+    .heart::after{ top:-80px; }
+    @keyframes beat{
+      0%, 60%, 100%{ transform: rotate(-45deg) scale(1); }
+      30%{ transform: rotate(-45deg) scale(1.12); }
+    }
+
+    /* SPADAJĄCE SERDUSZKA */
+    .falling{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+    .falling span{
+      position:absolute; top:-10vh; font-size: clamp(16px, 2vw, 32px);
+      animation: fall linear infinite;
+      opacity:.7;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.15));
+    }
+    @keyframes fall{
+      to{ transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* KARTA z życzeniami */
+    .card{ position:relative; z-index:1; background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 22px; padding: 1.4rem; box-shadow: var(--shadow); }
+    .grid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
+
+    .nice p{ margin:.6rem 0; color: var(--muted); font-size:1.05rem; }
+    .nice .big{ font-size:1.25rem; }
+
+    /* GALERIA ZDJĘĆ */
+    .gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:.6rem; margin-top: .8rem; }
+    .frame{ position:relative; border-radius: 16px; overflow:hidden; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); }
+    .frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .hint{ font-size:.95rem; color:var(--muted); margin:.4rem 0 0; text-align:center; }
+
+    /* PRZYCISKI / LINKI */
+    .cta{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin: 1rem 0 0; }
+    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1rem; border-radius:14px; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); font-weight:700; }
+    .btn:hover{ transform: translateY(-1px); }
+
+    footer{ text-align:center; color:var(--muted); padding:2rem 0; }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#">
-        <span class="logo">⚡</span>
-        <span>Moja Strona</span>
-      </a>
-      <nav>
-        <button id="burger" class="burger" aria-label="menu">☰</button>
-        <div id="menu" class="menu" role="menu">
-          <a href="#o-mnie">O mnie</a>
-          <a href="#projekty">Projekty</a>
-          <a href="#kontakt">Kontakt</a>
-          <button id="theme" class="btn" title="Przełącz motyw">🌓 <span>Motyw</span></button>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <!-- spadające serduszka (tworzone w JS) -->
+  <div class="falling" aria-hidden="true" id="falling"></div>
 
-  <main>
-    <section class="hero container">
-      <h1>Postaw własną stronę <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">za darmo</span></h1>
-      <p>To jest lekki, w pełni edytowalny szablon HTML/CSS/JS w jednym pliku. Skopiuj go, zmień treści i wrzuć na GitHub Pages, Cloudflare Pages, Netlify lub Vercel.</p>
+  <main class="container hero">
+    <h1 class="title">Nasza rocznica</h1>
+    <div class="heart-wrap" aria-hidden="true"><div class="heart"></div></div>
+    <p class="subtitle">Już cały rok razem 💗 Każdy dzień z Tobą jest jak mały cud – pełen uśmiechu, czułości i wsparcia. Dziękuję, że jesteś moją ulubioną osobą do wszystkich przygód – tych dużych i tych całkiem małych.</p>
+
+    <section class="card nice" style="margin-top:1.2rem">
+      <p class="big">Kocham nasz śmiech bez powodu, te spojrzenia, kiedy mówimy wszystko bez słów, i to, że potrafimy być dla siebie domem – gdziekolwiek jesteśmy.</p>
+      <p>Niech następny rok będzie jeszcze piękniejszy: więcej wspólnych spacerów, ciepłych poranków, filmów pod kocem i niespodziewanych buziaków. Jesteś moim ulubionym "tu i teraz". 💞</p>
       <div class="cta">
-        <a class="btn" href="#projekty">Zobacz sekcje</a>
-        <a class="btn" href="https://pages.github.com/" target="_blank" rel="noreferrer">Uruchom na GitHub Pages →</a>
+        <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn" target="_blank" rel="noreferrer">🎵 Otwórz naszą playlistę na Spotify</a>
       </div>
     </section>
 
-    <section id="o-mnie" class="section container">
-      <h2>O mnie</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Kim jestem?</h3>
-          <p class="muted">Krótki opis o Tobie. Napisz, czym się zajmujesz, jakich technologii używasz i czego szukasz.</p>
-        </article>
-        <article class="card">
-          <h3>Co robię?</h3>
-          <p class="muted">Wypunktuj swoje umiejętności, projekty lub usługi. Kod, grafika, elektronika – pełna dowolność.</p>
-        </article>
-        <article class="card">
-          <h3>Dlaczego ta strona?</h3>
-          <p class="muted">Portfolio, CV online, wizytówka, blog – możesz rozbudować to jak chcesz.</p>
-        </article>
+    <section style="margin-top:1.2rem">
+      <div class="card">
+        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasze chwile</h2>
+        <div class="gallery">
+          <!-- PODMIEŃ SRC na swoje zdjęcia (wrzuć do /img i użyj relatywnej ścieżki) -->
+          <figure class="frame"><img src="img/zdjecie1.jpg" alt="Nasze zdjęcie 1"></figure>
+          <figure class="frame"><img src="img/zdjecie2.jpg" alt="Nasze zdjęcie 2"></figure>
+          <figure class="frame"><img src="img/zdjecie3.jpg" alt="Nasze zdjęcie 3"></figure>
+          <figure class="frame"><img src="img/zdjecie4.jpg" alt="Nasze zdjęcie 4"></figure>
+        </div>
+        <p class="hint">Dodaj swoje pliki do folderu <code>img/</code> w repozytorium i podmień ścieżki powyżej. Nazwy mogą być dowolne.</p>
       </div>
     </section>
 
-    <section id="projekty" class="section container">
-      <h2>Wybrane projekty</h2>
-      <ul class="features">
-        <li>
-          <div class="icon">💡</div>
-          <div>
-            <h3>Projekt #1</h3>
-            <p class="muted">Krótki opis projektu. <a href="#">Repo / Demo</a></p>
-          </div>
-        </li>
-        <li>
-          <div class="icon">🧰</div>
-          <div>
-            <h3>Projekt #2</h3>
-            <p class="muted">Co zrobiłeś, czego się nauczyłeś, link.</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon">🚀</div>
-          <div>
-            <h3>Projekt #3</h3>
-            <p class="muted">Stack technologiczny, zrzuty ekranu, ciekawostki.</p>
-          </div>
-        </li>
-      </ul>
-
-      <div class="gallery" style="margin-top:1rem; grid-auto-rows: 120px;">
-        <img class="wide" src="https://picsum.photos/seed/one/600/400" alt="Zrzut 1"/>
-        <img class="tall" src="https://picsum.photos/seed/two/400/600" alt="Zrzut 2"/>
-        <img src="https://picsum.photos/seed/three/600/600" alt="Zrzut 3"/>
-        <img class="wide" src="https://picsum.photos/seed/four/600/400" alt="Zrzut 4"/>
-        <img src="https://picsum.photos/seed/five/600/600" alt="Zrzut 5"/>
+    <section style="margin-top:1.2rem">
+      <div class="card">
+        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasza muzyka</h2>
+        <!-- PODMIEŃ ID playlisty w src na swoją: https://open.spotify.com/playlist/XXXXXXXXXXXXXX -->
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <p class="hint">Masz swoją playlistę? Otwórz ją na Spotify → Udostępnij → Osadzanie → skopiuj <em>Embed</em> i podmień <code>src</code>.</p>
       </div>
-    </section>
-
-    <section id="kontakt" class="section container">
-      <h2>Kontakt</h2>
-      <form class="contact" onsubmit="fakeSubmit(event)">
-        <input required name="name" placeholder="Twoje imię" />
-        <input required type="email" name="email" placeholder="Email" />
-        <textarea name="message" rows="5" placeholder="Wiadomość"></textarea>
-        <button class="btn" type="submit">Wyślij</button>
-        <p id="msg" class="muted" role="status"></p>
-      </form>
-      <p class="muted" style="margin-top:.6rem">Tip: chcesz prawdziwy formularz bez backendu? Sprawdź darmowe opcje typu Netlify Forms lub Formspree (plany free).</p>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      © <span id="year"></span> • Zbudowano czystym HTML/CSS/JS • <a href="#">GitHub</a>
-    </div>
-  </footer>
+  <footer>© <span id="year"></span> • Dla nas 💗</footer>
 
-  <!-- JS: mobilne menu, motyw, pseudo-wysyłka formularza -->
   <script>
-    const root = document.documentElement;
-    const themeBtn = document.getElementById('theme');
-    const burger = document.getElementById('burger');
-    const menu = document.getElementById('menu');
-    const year = document.getElementById('year');
-    const msg = document.getElementById('msg');
-
     // Rok w stopce
-    year.textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Motyw: zapisz w localStorage
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') root.classList.add('light');
-
-    themeBtn.addEventListener('click', () => {
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    });
-
-    // Menu mobilne
-    burger.addEventListener('click', () => menu.classList.toggle('open'));
-
-    // Pseudo-wysyłka (podmień na realny endpoint jeśli chcesz)
-    async function fakeSubmit(e){
-      e.preventDefault();
-      msg.textContent = 'Wysyłanie…';
-      await new Promise(r => setTimeout(r, 700));
-      msg.textContent = 'Dzięki! Formularz działa w trybie demo. Skonfiguruj prawdziwe wysyłanie w JS lub użyj usługi typu Netlify Forms.';
-      e.target.reset();
+    // Spadające serduszka – tworzymy losowe elementy
+    const container = document.getElementById('falling');
+    const HEARTS = 24; // możesz zwiększyć jeśli chcesz więcej
+    for(let i=0;i<HEARTS;i++){
+      const s = document.createElement('span');
+      s.textContent = '❤';
+      s.style.left = Math.random()*100 + 'vw';
+      const dur = 6 + Math.random()*8; // 6–14 s
+      s.style.animationDuration = dur + 's';
+      s.style.animationDelay = (Math.random()*-dur) + 's';
+      s.style.transform = `translateY(${Math.random()*100}vh)`;
+      container.appendChild(s);
     }
-    window.fakeSubmit = fakeSubmit;
   </script>
 </body>
 </html>
