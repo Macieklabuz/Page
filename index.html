@@ -44,42 +44,32 @@
     .container{ width:min(1100px, 92%); margin:0 auto; }
 
     /* HERO */
-    .hero{ position:relative; padding: 6rem 0 3rem; text-align:center; color:#3a1020; }
+    .hero{ position:relative; padding: 5.2rem 0 2rem; text-align:center; color:#3a1020; }
+    .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.4rem, 5.4vw, 5.2rem); line-height:1; margin:0 0 .4rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
+    .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.6rem; max-width: 60ch; }
 
-    .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.2rem, 5vw, 5rem); line-height:1; margin:0 0 .6rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
-    .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.2rem; max-width: 60ch; }
-
-    /* DUŻE ANIMOWANE SERCE */
-    .heart-wrap{ display:grid; place-items:center; margin: 1.4rem 0 1.6rem; }
-    .heart{
-      position:relative; width:160px; height:160px; transform: rotate(-45deg);
-      animation: beat 1.4s ease-in-out infinite;
+    /* NOWE SERCE – cień neonowy, niżej pod tytułem */
+    .heart-mid{ display:grid; place-items:center; margin: 2.2rem 0 1.4rem; }
+    .neo-heart{
+      width:min(220px, 40vw); aspect-ratio:1; position:relative;
+      filter: drop-shadow(0 12px 22px rgba(255,59,107,.35));
+      animation: float 5.5s ease-in-out infinite;
     }
-    .heart::before, .heart::after{
-      content:""; position:absolute; width:160px; height:160px; background: radial-gradient(circle at 30% 30%, #ff6b9a, #ff3b6b 60%);
-      border-radius: 50%;
-      box-shadow: var(--shadow);
-    }
-    .heart::before{ left:80px; }
-    .heart::after{ top:-80px; }
-    @keyframes beat{
-      0%, 60%, 100%{ transform: rotate(-45deg) scale(1); }
-      30%{ transform: rotate(-45deg) scale(1.12); }
+    .neo-heart svg{ width:100%; height:100%; display:block; }
+    .neo-heart .fill{ fill:url(#grad1); }
+    .neo-heart .stroke{ fill:none; stroke:#fff; stroke-width:2.5; stroke-linecap:round; stroke-dasharray:14 10; animation: dash 6s linear infinite; opacity:.6 }
+    @keyframes dash{ to{ stroke-dashoffset:-200; } }
+    @keyframes float{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(-8px) }
     }
 
     /* SPADAJĄCE SERDUSZKA */
     .falling{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
-    .falling span{
-      position:absolute; top:-10vh; font-size: clamp(16px, 2vw, 32px);
-      animation: fall linear infinite;
-      opacity:.7;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,.15));
-    }
-    @keyframes fall{
-      to{ transform: translateY(110vh) rotate(360deg); }
-    }
+    .falling span{ position:absolute; top:-10vh; font-size: clamp(16px, 2vw, 32px); animation: fall linear infinite; opacity:.7; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)); }
+    @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
-    /* KARTA z życzeniami */
+    /* KARTY */
     .card{ position:relative; z-index:1; background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 22px; padding: 1.4rem; box-shadow: var(--shadow); }
     .grid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
 
@@ -92,10 +82,14 @@
     .frame img{ width:100%; height:100%; object-fit:cover; display:block; }
     .hint{ font-size:.95rem; color:var(--muted); margin:.4rem 0 0; text-align:center; }
 
-    /* PRZYCISKI / LINKI */
-    .cta{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin: 1rem 0 0; }
-    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1rem; border-radius:14px; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); font-weight:700; }
-    .btn:hover{ transform: translateY(-1px); }
+    /* DUŻE FINAŁOWE SERCE NA DOLE */
+    .finale{ margin: 1.6rem 0 0; display:grid; place-items:center; }
+    .mega-heart{ width:min(520px, 80vw); aspect-ratio:1; position:relative; }
+    .glow{ position:absolute; inset: -6%; background: radial-gradient(closest-side, rgba(255,59,107,.55), rgba(255,59,107,0)); filter: blur(20px); animation: pulse 2.6s ease-in-out infinite; border-radius:50%; transform: translateZ(0); }
+    .mega-heart svg{ width:100%; height:100%; display:block; }
+    .mega-heart .fill{ fill:url(#grad2); }
+    .mega-heart .shine{ fill:none; stroke:#fff; stroke-width:3; opacity:.55; filter: drop-shadow(0 10px 18px rgba(255,255,255,.35)); stroke-linecap:round; stroke-dasharray:20 14; animation: dash 8s linear infinite; }
+    @keyframes pulse{ 0%,100%{ transform: scale(1); opacity:.8 } 50%{ transform: scale(1.06); opacity:1 } }
 
     footer{ text-align:center; color:var(--muted); padding:2rem 0; }
   </style>
@@ -106,15 +100,27 @@
 
   <main class="container hero">
     <h1 class="title">Nasza rocznica</h1>
-    <div class="heart-wrap" aria-hidden="true"><div class="heart"></div></div>
     <p class="subtitle">Już cały rok razem 💗 Każdy dzień z Tobą jest jak mały cud – pełen uśmiechu, czułości i wsparcia. Dziękuję, że jesteś moją ulubioną osobą do wszystkich przygód – tych dużych i tych całkiem małych.</p>
+
+    <!-- NOWE SERCE – obniżone, z neonowym efektem -->
+    <div class="heart-mid">
+      <div class="neo-heart" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ff88b3"/>
+              <stop offset="100%" stop-color="#ff3b6b"/>
+            </linearGradient>
+          </defs>
+          <path class="fill" d="M50 86C37 74 14 58 14 37c0-12 9-19 20-19 8 0 13 4 16 9 3-5 8-9 16-9 11 0 20 7 20 19 0 21-23 37-36 49z"/>
+          <path class="stroke" d="M50 86C37 74 14 58 14 37c0-12 9-19 20-19 8 0 13 4 16 9 3-5 8-9 16-9 11 0 20 7 20 19 0 21-23 37-36 49z"/>
+        </svg>
+      </div>
+    </div>
 
     <section class="card nice" style="margin-top:1.2rem">
       <p class="big">Kocham nasz śmiech bez powodu, te spojrzenia, kiedy mówimy wszystko bez słów, i to, że potrafimy być dla siebie domem – gdziekolwiek jesteśmy.</p>
       <p>Niech następny rok będzie jeszcze piękniejszy: więcej wspólnych spacerów, ciepłych poranków, filmów pod kocem i niespodziewanych buziaków. Jesteś moim ulubionym "tu i teraz". 💞</p>
-      <div class="cta">
-        <a class="btn" href="https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn" target="_blank" rel="noreferrer">🎵 Otwórz naszą playlistę na Spotify</a>
-      </div>
     </section>
 
     <section style="margin-top:1.2rem">
@@ -134,9 +140,27 @@
     <section style="margin-top:1.2rem">
       <div class="card">
         <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasza muzyka</h2>
-        <!-- PODMIEŃ ID playlisty w src na swoją: https://open.spotify.com/playlist/XXXXXXXXXXXXXX -->
+        <!-- ZOSTAWIAMY TYLKO WERSJĘ EMBED. PODMIEŃ ID playlisty: https://open.spotify.com/playlist/XXXXXXXXXXXXXX -->
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <p class="hint">Masz swoją playlistę? Otwórz ją na Spotify → Udostępnij → Osadzanie → skopiuj <em>Embed</em> i podmień <code>src</code>.</p>
+      </div>
+    </section>
+
+    <!-- WIELKIE SERCE NA SAMYM DOLE -->
+    <section class="finale">
+      <div class="mega-heart" aria-hidden="true">
+        <div class="glow"></div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad2" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ff6ea9"/>
+              <stop offset="100%" stop-color="#ff2f63"/>
+            </linearGradient>
+          </defs>
+          <path class="fill" d="M50 86C37 74 14 58 14 37c0-12 9-19 20-19 8 0 13 4 16 9 3-5 8-9 16-9 11 0 20 7 20 19 0 21-23 37-36 49z"/>
+          <path class="shine" d="M32 30c5-7 17-7 18 5"/>
+          <path class="shine" d="M68 30c-5-7-17-7-18 5"/>
+        </svg>
       </div>
     </section>
   </main>
