@@ -12,10 +12,10 @@
 
   <style>
     :root{
-      --bg1: #ffdde1;   /* róż */
-      --bg2: #ee9ca7;   /* malinowy */
-      --ink: #2a1a1f;   /* ciemny tekst */
-      --muted: #5b3a44; /* stonowany tekst */
+      --bg1: #ffdde1;
+      --bg2: #ee9ca7;
+      --ink: #2a1a1f;
+      --muted: #5b3a44;
       --card: rgba(255,255,255,.85);
       --shadow: 0 20px 60px rgba(0,0,0,.15);
       --border: rgba(255,255,255,.6);
@@ -33,7 +33,6 @@
       overflow-x:hidden;
     }
 
-    /* delikatny pattern z serduszek jako nakładka */
     body::before{
       content:""; position:fixed; inset:0; pointer-events:none; opacity:.25; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 16c-3.5-7.2-16-5.8-16 3.8 0 7.4 9.6 12.9 16 18.2 6.4-5.3 16-10.8 16-18.2 0-9.6-12.5-11-16-3.8z' fill='%23ffffff' fill-opacity='0.25'/%3E%3C/svg%3E");
@@ -43,46 +42,36 @@
     a{color: var(--accent); text-decoration: none;}
     .container{ width:min(1100px, 92%); margin:0 auto; }
 
-    /* HERO */
     .hero{ position:relative; padding: 5.2rem 0 2rem; text-align:center; color:#3a1020; }
     .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.4rem, 5.4vw, 5.2rem); line-height:1; margin:0 0 .4rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
     .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.6rem; max-width: 60ch; }
 
-    /* NOWE SERCE – cień neonowy, niżej pod tytułem */
     .heart-mid{ display:grid; place-items:center; margin: 2.2rem 0 1.4rem; }
-    .neo-heart{
-      width:min(220px, 40vw); aspect-ratio:1; position:relative;
-      filter: drop-shadow(0 12px 22px rgba(255,59,107,.35));
-      animation: float 5.5s ease-in-out infinite;
-    }
+    .neo-heart{ width:min(220px, 40vw); aspect-ratio:1; position:relative; filter: drop-shadow(0 12px 22px rgba(255,59,107,.35)); animation: float 5.5s ease-in-out infinite; }
     .neo-heart svg{ width:100%; height:100%; display:block; }
     .neo-heart .fill{ fill:url(#grad1); }
     .neo-heart .stroke{ fill:none; stroke:#fff; stroke-width:2.5; stroke-linecap:round; stroke-dasharray:14 10; animation: dash 6s linear infinite; opacity:.6 }
     @keyframes dash{ to{ stroke-dashoffset:-200; } }
-    @keyframes float{
-      0%,100%{ transform: translateY(0) }
-      50%{ transform: translateY(-8px) }
-    }
+    @keyframes float{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } }
 
-    /* SPADAJĄCE SERDUSZKA */
     .falling{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
     .falling span{ position:absolute; top:-10vh; font-size: clamp(16px, 2vw, 32px); animation: fall linear infinite; opacity:.7; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)); }
     @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
-    /* KARTY */
     .card{ position:relative; z-index:1; background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 22px; padding: 1.4rem; box-shadow: var(--shadow); }
     .grid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
 
     .nice p{ margin:.6rem 0; color: var(--muted); font-size:1.05rem; }
     .nice .big{ font-size:1.25rem; }
 
-    /* GALERIA ZDJĘĆ */
     .gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:.6rem; margin-top: .8rem; }
     .frame{ position:relative; border-radius: 16px; overflow:hidden; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); }
     .frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .wide{ grid-column: span 2; aspect-ratio: 16/9; }
+    .tall{ grid-row: span 2; aspect-ratio: 3/4; }
+
     .hint{ font-size:.95rem; color:var(--muted); margin:.4rem 0 0; text-align:center; }
 
-    /* DUŻE FINAŁOWE SERCE NA DOLE */
     .finale{ margin: 1.6rem 0 0; display:grid; place-items:center; }
     .mega-heart{ width:min(520px, 80vw); aspect-ratio:1; position:relative; }
     .glow{ position:absolute; inset: -6%; background: radial-gradient(closest-side, rgba(255,59,107,.55), rgba(255,59,107,0)); filter: blur(20px); animation: pulse 2.6s ease-in-out infinite; border-radius:50%; transform: translateZ(0); }
@@ -95,14 +84,12 @@
   </style>
 </head>
 <body>
-  <!-- spadające serduszka (tworzone w JS) -->
   <div class="falling" aria-hidden="true" id="falling"></div>
 
   <main class="container hero">
     <h1 class="title">Nasza rocznica</h1>
     <p class="subtitle">Już cały rok razem 💗 Każdy dzień z Tobą jest jak mały cud – pełen uśmiechu, czułości i wsparcia. Dziękuję, że jesteś moją ulubioną osobą do wszystkich przygód – tych dużych i tych całkiem małych.</p>
 
-    <!-- NOWE SERCE – obniżone, z neonowym efektem -->
     <div class="heart-mid">
       <div class="neo-heart" aria-hidden="true">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -127,26 +114,23 @@
       <div class="card">
         <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasze chwile</h2>
         <div class="gallery">
-          <!-- PODMIEŃ SRC na swoje zdjęcia (wrzuć do /img i użyj relatywnej ścieżki) -->
-          <figure class="frame"><img src="img/zdjecie1.jpg" alt="Nasze zdjęcie 1"></figure>
-          <figure class="frame"><img src="img/zdjecie2.jpg" alt="Nasze zdjęcie 2"></figure>
-          <figure class="frame"><img src="img/zdjecie3.jpg" alt="Nasze zdjęcie 3"></figure>
+          <figure class="frame wide"><img src="img/zdjecie1.jpg" alt="Nasze zdjęcie 1"></figure>
+          <figure class="frame wide"><img src="img/zdjecie3.jpg" alt="Nasze zdjęcie 3"></figure>
+          <figure class="frame tall"><img src="img/zdjecie2.jpg" alt="Nasze zdjęcie 2"></figure>
           <figure class="frame"><img src="img/zdjecie4.jpg" alt="Nasze zdjęcie 4"></figure>
         </div>
-        <p class="hint">Dodaj swoje pliki do folderu <code>img/</code> w repozytorium i podmień ścieżki powyżej. Nazwy mogą być dowolne.</p>
+        <p class="hint">Dodaj swoje pliki do folderu <code>img/</code> w repozytorium i podmień ścieżki powyżej.</p>
       </div>
     </section>
 
     <section style="margin-top:1.2rem">
       <div class="card">
         <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasza muzyka</h2>
-        <!-- ZOSTAWIAMY TYLKO WERSJĘ EMBED. PODMIEŃ ID playlisty: https://open.spotify.com/playlist/XXXXXXXXXXXXXX -->
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <p class="hint">Masz swoją playlistę? Otwórz ją na Spotify → Udostępnij → Osadzanie → skopiuj <em>Embed</em> i podmień <code>src</code>.</p>
       </div>
     </section>
 
-    <!-- WIELKIE SERCE NA SAMYM DOLE -->
     <section class="finale">
       <div class="mega-heart" aria-hidden="true">
         <div class="glow"></div>
@@ -162,23 +146,21 @@
           <path class="shine" d="M68 30c-5-7-17-7-18 5"/>
         </svg>
       </div>
+      <p class="hint" style="margin-top:1.2rem; font-size:1.1rem; max-width:60ch; text-align:center;">Każde nasze zdjęcie to wspomnienie, a każde wspomnienie to powód, by się uśmiechnąć. Dziękuję, że jesteś częścią mojego świata, każdego dnia coraz piękniejszą. 💕</p>
     </section>
   </main>
 
   <footer>© <span id="year"></span> • Dla nas 💗</footer>
 
   <script>
-    // Rok w stopce
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Spadające serduszka – tworzymy losowe elementy
     const container = document.getElementById('falling');
-    const HEARTS = 24; // możesz zwiększyć jeśli chcesz więcej
+    const HEARTS = 24;
     for(let i=0;i<HEARTS;i++){
       const s = document.createElement('span');
       s.textContent = '❤';
       s.style.left = Math.random()*100 + 'vw';
-      const dur = 6 + Math.random()*8; // 6–14 s
+      const dur = 6 + Math.random()*8;
       s.style.animationDuration = dur + 's';
       s.style.animationDelay = (Math.random()*-dur) + 's';
       s.style.transform = `translateY(${Math.random()*100}vh)`;
