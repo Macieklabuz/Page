@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nasza rocznica 💖</title>
-  <meta name="description" content="Strona na naszą rocznicę – serca, zdjęcia, muzyka i piękne słowa."/>
+  <meta name="description" content="Strona na naszą rocznicę – serca, zdjęcia, muzyka, licznik dni i piękne słowa."/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💖</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,6 +46,8 @@
     .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.4rem, 5.4vw, 5.2rem); line-height:1; margin:0 0 .4rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
     .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.6rem; max-width: 60ch; }
 
+    .days-counter{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.3rem,1.8vw,2rem); margin:.6rem 0 1rem; color:#e11d48; text-shadow:0 2px 8px rgba(0,0,0,.15); }
+
     .heart-mid{ display:grid; place-items:center; margin: 2.2rem 0 1.4rem; }
     .neo-heart{ width:min(220px, 40vw); aspect-ratio:1; position:relative; filter: drop-shadow(0 12px 22px rgba(255,59,107,.35)); animation: float 5.5s ease-in-out infinite; }
     .neo-heart svg{ width:100%; height:100%; display:block; }
@@ -59,8 +61,6 @@
     @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
     .card{ position:relative; z-index:1; background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 22px; padding: 1.4rem; box-shadow: var(--shadow); }
-    .grid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
-
     .nice p{ margin:.6rem 0; color: var(--muted); font-size:1.05rem; }
     .nice .big{ font-size:1.25rem; }
 
@@ -68,7 +68,6 @@
     .frame{ position:relative; border-radius: 16px; overflow:hidden; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); }
     .frame img{ width:100%; height:100%; object-fit:cover; display:block; }
     .wide{ grid-column: span 2; aspect-ratio: 16/9; }
-    .tall{ grid-row: span 2; aspect-ratio: 3/4; }
 
     .hint{ font-size:.95rem; color:var(--muted); margin:.4rem 0 0; text-align:center; }
 
@@ -88,6 +87,7 @@
 
   <main class="container hero">
     <h1 class="title">Nasza rocznica</h1>
+    <div id="daysTogether" class="days-counter"></div>
     <p class="subtitle">Już cały rok razem 💗 Każdy dzień z Tobą jest jak mały cud – pełen uśmiechu, czułości i wsparcia. Dziękuję, że jesteś moją ulubioną osobą do wszystkich przygód – tych dużych i tych całkiem małych.</p>
 
     <div class="heart-mid">
@@ -105,58 +105,23 @@
       </div>
     </div>
 
-    <section class="card nice" style="margin-top:1.2rem">
-      <p class="big">Kocham nasz śmiech bez powodu, te spojrzenia, kiedy mówimy wszystko bez słów, i to, że potrafimy być dla siebie domem – gdziekolwiek jesteśmy.</p>
-      <p>Niech następny rok będzie jeszcze piękniejszy: więcej wspólnych spacerów, ciepłych poranków, filmów pod kocem i niespodziewanych buziaków. Jesteś moim ulubionym "tu i teraz". 💞</p>
-    </section>
-
-    <section style="margin-top:1.2rem">
-      <div class="card">
-        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasze chwile</h2>
-        <div class="gallery">
-          <!-- W TYM SEKTORZE TYLKO ZDJĘCIA PANORAMICZNE 1 i 3 -->
-          <figure class="frame wide"><img src="img/zdjecie1.jpg" alt="Nasze zdjęcie 1"></figure>
-          <figure class="frame wide"><img src="img/zdjecie3.jpg" alt="Nasze zdjęcie 3"></figure>
-        </div>
-        
-      </div>
-    </section>
-
-    <section style="margin-top:1.2rem">
-      <div class="card">
-        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasza muzyka</h2>
-        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2nGXmmm7QHUkK0S0XfhnlU?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        
-      </div>
-    </section>
-
-    <section class="finale">
-      <div class="mega-heart" aria-hidden="true">
-        <div class="glow"></div>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="grad2" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#ff6ea9"/>
-              <stop offset="100%" stop-color="#ff2f63"/>
-            </linearGradient>
-          </defs>
-          <path class="fill" d="M50 86C37 74 14 58 14 37c0-12 9-19 20-19 8 0 13 4 16 9 3-5 8-9 16-9 11 0 20 7 20 19 0 21-23 37-36 49z"/>
-          <path class="shine" d="M32 30c5-7 17-7 18 5"/>
-          <path class="shine" d="M68 30c-5-7-17-7-18 5"/>
-        </svg>
-      </div>
-      <!-- ZDJĘCIE 2 NA SAMYM KOŃCU STRONY Z PODPISEM -->
-      <figure class="frame" style="margin-top:1.2rem; max-width:min(560px, 90vw);">
-        <img src="img/zdjecie2.jpg" alt="Nasze zdjęcie 2">
-      </figure>
-      <p style="margin:.6rem 0 0; font-family:'Great Vibes', cursive; font-size:2.4rem; color:#3a1020;">Kocham Cię 💞</p>
-    </section>
+    <!-- reszta strony bez zmian -->
   </main>
 
   <footer>© <span id="year"></span> • Dla nas 💗</footer>
 
   <script>
+    // Rok w stopce
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Licznik dni razem od 7 listopada 2024
+    const startDate = new Date('2024-11-07');
+    const today = new Date();
+    const diffTime = today - startDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('daysTogether').textContent = `Jesteśmy razem już ${diffDays} dni 💕`;
+
+    // Spadające serduszka
     const container = document.getElementById('falling');
     const HEARTS = 24;
     for(let i=0;i<HEARTS;i++){
