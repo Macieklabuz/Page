@@ -33,6 +33,7 @@
       overflow-x:hidden;
     }
 
+    /* delikatny pattern serduszek */
     body::before{
       content:""; position:fixed; inset:0; pointer-events:none; opacity:.25; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 16c-3.5-7.2-16-5.8-16 3.8 0 7.4 9.6 12.9 16 18.2 6.4-5.3 16-10.8 16-18.2 0-9.6-12.5-11-16-3.8z' fill='%23ffffff' fill-opacity='0.25'/%3E%3C/svg%3E");
@@ -42,13 +43,14 @@
     a{color: var(--accent); text-decoration: none;}
     .container{ width:min(1100px, 92%); margin:0 auto; }
 
+    /* HERO */
     .hero{ position:relative; padding: 5.2rem 0 2rem; text-align:center; color:#3a1020; }
     .title{ font-family: "Great Vibes", cursive; font-size: clamp(2.4rem, 5.4vw, 5.2rem); line-height:1; margin:0 0 .4rem; text-shadow: 0 6px 30px rgba(0,0,0,.15); }
-    .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.6rem; max-width: 60ch; }
+    .subtitle{ font-weight:600; letter-spacing:.5px; font-size: clamp(1.1rem, 1.2rem + .4vw, 1.6rem); margin:0 auto 1.2rem; max-width: 60ch; }
+    .days-counter{ font-weight:800; font-size:clamp(1.3rem,1.8vw,2rem); margin:.6rem 0 1rem; color:#e11d48; text-shadow:0 2px 8px rgba(0,0,0,.15); }
 
-    .days-counter{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.3rem,1.8vw,2rem); margin:.6rem 0 1rem; color:#e11d48; text-shadow:0 2px 8px rgba(0,0,0,.15); }
-
-    .heart-mid{ display:grid; place-items:center; margin: 2.2rem 0 1.4rem; }
+    /* SERCE pod tytułem */
+    .heart-mid{ display:grid; place-items:center; margin: 2rem 0 1.4rem; }
     .neo-heart{ width:min(220px, 40vw); aspect-ratio:1; position:relative; filter: drop-shadow(0 12px 22px rgba(255,59,107,.35)); animation: float 5.5s ease-in-out infinite; }
     .neo-heart svg{ width:100%; height:100%; display:block; }
     .neo-heart .fill{ fill:url(#grad1); }
@@ -56,14 +58,17 @@
     @keyframes dash{ to{ stroke-dashoffset:-200; } }
     @keyframes float{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } }
 
+    /* spadające serca */
     .falling{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
     .falling span{ position:absolute; top:-10vh; font-size: clamp(16px, 2vw, 32px); animation: fall linear infinite; opacity:.7; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)); }
     @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); } }
 
+    /* karty */
     .card{ position:relative; z-index:1; background: var(--card); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 22px; padding: 1.4rem; box-shadow: var(--shadow); }
     .nice p{ margin:.6rem 0; color: var(--muted); font-size:1.05rem; }
     .nice .big{ font-size:1.25rem; }
 
+    /* galeria */
     .gallery{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:.6rem; margin-top: .8rem; }
     .frame{ position:relative; border-radius: 16px; overflow:hidden; border:1px solid var(--border); background:#fff; box-shadow: var(--shadow); }
     .frame img{ width:100%; height:100%; object-fit:cover; display:block; }
@@ -71,6 +76,7 @@
 
     .hint{ font-size:.95rem; color:var(--muted); margin:.4rem 0 0; text-align:center; }
 
+    /* finałowe serce */
     .finale{ margin: 1.6rem 0 0; display:grid; place-items:center; }
     .mega-heart{ width:min(520px, 80vw); aspect-ratio:1; position:relative; }
     .glow{ position:absolute; inset: -6%; background: radial-gradient(closest-side, rgba(255,59,107,.55), rgba(255,59,107,0)); filter: blur(20px); animation: pulse 2.6s ease-in-out infinite; border-radius:50%; transform: translateZ(0); }
@@ -79,17 +85,29 @@
     .mega-heart .shine{ fill:none; stroke:#fff; stroke-width:3; opacity:.55; filter: drop-shadow(0 10px 18px rgba(255,255,255,.35)); stroke-linecap:round; stroke-dasharray:20 14; animation: dash 8s linear infinite; }
     @keyframes pulse{ 0%,100%{ transform: scale(1); opacity:.8 } 50%{ transform: scale(1.06); opacity:1 } }
 
+    /* audio przycisk */
+    .audio-ctrl{ position:fixed; right:16px; bottom:16px; z-index:50; border:none; border-radius:16px; padding:.7rem 1rem; font-weight:800; background:#fff; color:#e11d48; box-shadow: var(--shadow); display:inline-flex; align-items:center; gap:.6rem; cursor:pointer; }
+    .audio-ctrl[aria-pressed="true"]{ color:#111; }
+    .audio-ctrl .dot{ width:8px; height:8px; border-radius:50%; background:#e11d48; animation: blink 1.2s ease-in-out infinite; }
+    @keyframes blink{ 50%{ opacity:.4 } }
+    .audio-hint{ position:fixed; left:50%; transform:translateX(-50%); bottom:84px; background:rgba(255,255,255,.95); color:#111; padding:.5rem .9rem; border-radius:14px; box-shadow: var(--shadow); z-index:50; font-weight:600; animation: float 4s ease-in-out infinite; }
+    .audio-hint.hide{ display:none; }
+
     footer{ text-align:center; color:var(--muted); padding:2rem 0; }
   </style>
 </head>
 <body>
+  <!-- spadające serduszka -->
   <div class="falling" aria-hidden="true" id="falling"></div>
 
   <main class="container hero">
     <h1 class="title">Nasza rocznica</h1>
+    <!-- LICZNIK DNI NA GÓRZE -->
     <div id="daysTogether" class="days-counter"></div>
+
     <p class="subtitle">Już cały rok razem 💗 Każdy dzień z Tobą jest jak mały cud – pełen uśmiechu, czułości i wsparcia. Dziękuję, że jesteś moją ulubioną osobą do wszystkich przygód – tych dużych i tych całkiem małych.</p>
 
+    <!-- SERCE niżej -->
     <div class="heart-mid">
       <div class="neo-heart" aria-hidden="true">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -105,10 +123,62 @@
       </div>
     </div>
 
-    <!-- reszta strony bez zmian -->
+    <!-- PIĘKNE SŁOWA -->
+    <section class="card nice" style="margin-top:1.2rem">
+      <p class="big">Kocham nasz śmiech bez powodu, te spojrzenia, kiedy mówimy wszystko bez słów, i to, że potrafimy być dla siebie domem – gdziekolwiek jesteśmy.</p>
+      <p>Niech następny rok będzie jeszcze piękniejszy: więcej wspólnych spacerów, ciepłych poranków, filmów pod kocem i niespodziewanych buziaków. Jesteś moim ulubionym "tu i teraz". 💞</p>
+    </section>
+
+    <!-- GALERIA: tylko zdjęcia 1 i 3, panoramiczne -->
+    <section style="margin-top:1.2rem">
+      <div class="card">
+        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasze chwile</h2>
+        <div class="gallery">
+          <figure class="frame wide"><img src="img/zdjecie1.jpg" alt="Nasze zdjęcie 1"></figure>
+          <figure class="frame wide"><img src="img/zdjecie3.jpg" alt="Nasze zdjęcie 3"></figure>
+        </div>
+        <p class="hint">Wgraj swoje pliki do <code>img/</code> i podmień <code>zdjecie1.jpg</code> oraz <code>zdjecie3.jpg</code>.</p>
+      </div>
+    </section>
+
+    <!-- MUZYKA: osadzenie Spotify -->
+    <section style="margin-top:1.2rem">
+      <div class="card">
+        <h2 style="margin:0 0 .6rem; font-family:'Great Vibes', cursive; font-size:2.2rem">Nasza muzyka</h2>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <p class="hint">Masz swoją playlistę? Użyj Spotify → Udostępnij → Osadź playlistę → skopiuj <em>Embed</em> i podmień <code>src</code>.</p>
+      </div>
+    </section>
+
+    <!-- WIELKIE SERCE + ZDJĘCIE 2 Z PODPISEM NA SAMYM KOŃCU -->
+    <section class="finale">
+      <div class="mega-heart" aria-hidden="true">
+        <div class="glow"></div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad2" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#ff6ea9"/>
+              <stop offset="100%" stop-color="#ff2f63"/>
+            </linearGradient>
+          </defs>
+          <path class="fill" d="M50 86C37 74 14 58 14 37c0-12 9-19 20-19 8 0 13 4 16 9 3-5 8-9 16-9 11 0 20 7 20 19 0 21-23 37-36 49z"/>
+          <path class="shine" d="M32 30c5-7 17-7 18 5"/>
+          <path class="shine" d="M68 30c-5-7-17-7-18 5"/>
+        </svg>
+      </div>
+      <figure class="frame" style="margin-top:1.2rem; max-width:min(560px, 90vw);">
+        <img src="img/zdjecie2.jpg" alt="Nasze zdjęcie 2">
+      </figure>
+      <p style="margin:.6rem 0 0; font-family:'Great Vibes', cursive; font-size:2.4rem; color:#3a1020;">Kocham Cię 💞</p>
+    </section>
   </main>
 
   <footer>© <span id="year"></span> • Dla nas 💗</footer>
+
+  <!-- AUDIO: kontrolka i plik (wrzuć swój do /audio/rocznica.mp3) -->
+  <button class="audio-ctrl" id="audioBtn" aria-pressed="false" title="Włącz muzykę"><span class="dot"></span> Włącz muzykę</button>
+  <div class="audio-hint" id="audioHint">Kliknij, aby włączyć muzykę 🎶</div>
+  <audio id="bgm" src="audio/rocznica.mp3" preload="auto" loop></audio>
 
   <script>
     // Rok w stopce
@@ -128,11 +198,55 @@
       const s = document.createElement('span');
       s.textContent = '❤';
       s.style.left = Math.random()*100 + 'vw';
-      const dur = 6 + Math.random()*8;
+      const dur = 6 + Math.random()*8; // 6–14 s
       s.style.animationDuration = dur + 's';
       s.style.animationDelay = (Math.random()*-dur) + 's';
       s.style.transform = `translateY(${Math.random()*100}vh)`;
       container.appendChild(s);
+    }
+
+    // AUDIO – start po geście użytkownika
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('audioBtn');
+    const hint = document.getElementById('audioHint');
+
+    function fadeTo(target = 0.8, ms = 1200){
+      const start = bgm.volume;
+      const t0 = performance.now();
+      function step(t){
+        const p = Math.min(1, (t - t0) / ms);
+        bgm.volume = start + (target - start) * p;
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    async function playBgm(){
+      try{
+        if(bgm.paused) bgm.volume = 0.01;
+        await bgm.play();
+        fadeTo(0.8, 1000);
+        btn.setAttribute('aria-pressed','true');
+        btn.textContent = '⏸ Pauza';
+        hint.classList.add('hide');
+        localStorage.setItem('bgm','on');
+      }catch(e){ /* autoplay guard */ }
+    }
+
+    function pauseBgm(){
+      fadeTo(0.0, 400);
+      setTimeout(()=> bgm.pause(), 420);
+      btn.setAttribute('aria-pressed','false');
+      btn.textContent = '▶️ Włącz muzykę';
+      localStorage.setItem('bgm','off');
+    }
+
+    btn.addEventListener('click', ()=> bgm.paused ? playBgm() : pauseBgm());
+
+    // Jeśli wcześniej było ON – włącz po pierwszym kliknięciu gdziekolwiek
+    if(localStorage.getItem('bgm') === 'on'){
+      const once = ()=>{ playBgm(); window.removeEventListener('pointerdown', once); };
+      window.addEventListener('pointerdown', once, { once:true });
     }
   </script>
 </body>
